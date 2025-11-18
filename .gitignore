@@ -1,8 +1,32 @@
+# Build artifacts
 *.[oa]
+*.o
+*.obj
+*.exe
+*.out
+calc
+loanCalculator
 *~
+
+# Qt/Build files
 *.mk
 build/
 nbproject/
 .sconsign.dblite
-loanCalculator
 moc*.cc
+moc*.cpp
+Makefile
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Doxygen output
+docs/html/
+docs/latex/
+
+# Test outputs
+*.log
+test_output/

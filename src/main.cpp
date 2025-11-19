@@ -51,6 +51,20 @@ int main(int argc, char* argv[]) {
     }
     
     if (calcPayment) {
+        // add basic validation
+        if (amount <= 0) {
+            cout << "Error: Loan amount must be positive!" << endl;
+            return 1;
+        }
+        if (interestRate < 0) {
+            cout << "Error: Interest rate cannot be negative!" << endl;
+            return 1;
+        }
+        if (tenure <= 0) {
+            cout << "Error: Tenure must be positive!" << endl;
+            return 1;
+        }
+        
         Loan loan(amount, interestRate, tenure);
         loan.calculateEMI();
         

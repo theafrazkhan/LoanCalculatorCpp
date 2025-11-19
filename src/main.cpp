@@ -23,9 +23,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    float amount = 0;
-    float interestRate = 0;
-    int tenure = 0;
+    long double amount = 0;
+    long double interestRate = 0;
+    long int tenure = 0;
     bool calcPayment = false;
     
     // parse command line args
@@ -36,13 +36,13 @@ int main(int argc, char* argv[]) {
             calcPayment = true;
         }
         else if (arg == "-a" && i + 1 < argc) {
-            amount = stof(argv[++i]);
+            amount = stold(argv[++i]);
         }
         else if (arg == "-i" && i + 1 < argc) {
-            interestRate = stof(argv[++i]);
+            interestRate = stold(argv[++i]);
         }
         else if (arg == "-n" && i + 1 < argc) {
-            tenure = stoi(argv[++i]);
+            tenure = stol(argv[++i]);
         }
         else if (arg == "-h" || arg == "--help") {
             printUsage();

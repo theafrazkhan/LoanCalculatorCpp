@@ -12,38 +12,38 @@ Loan::Loan() {
     emi = 0;
 }
 
-Loan::Loan(float amt, float rate, int months) {
+Loan::Loan(long double amt, long double rate, long int months) {
     amount = amt;
     interest = rate;
     tenure = months;
     emi = 0;
 }
 
-void Loan::setAmount(float amt) {
+void Loan::setAmount(long double amt) {
     amount = amt;
 }
 
-void Loan::setInterest(float rate) {
+void Loan::setInterest(long double rate) {
     interest = rate;
 }
 
-void Loan::setTenure(int months) {
+void Loan::setTenure(long int months) {
     tenure = months;
 }
 
-float Loan::getAmount() {
+long double Loan::getAmount() {
     return amount;
 }
 
-float Loan::getInterest() {
+long double Loan::getInterest() {
     return interest;
 }
 
-int Loan::getTenure() {
+long int Loan::getTenure() {
     return tenure;
 }
 
-float Loan::getEMI() {
+long double Loan::getEMI() {
     return emi;
 }
 
@@ -51,16 +51,16 @@ void Loan::calculateEMI() {
     // EMI formula: [P x R x (1+R)^N]/[(1+R)^N-1]
     // where P = principal, R = monthly rate, N = tenure in months
     
-    float monthlyRate = interest / (12 * 100);
-    float temp = pow(1 + monthlyRate, tenure);
-    emi = (amount * monthlyRate * temp) / (temp - 1);
+    long double monthlyRate = interest / (12.0L * 100.0L);
+    long double temp = powl(1.0L + monthlyRate, tenure);
+    emi = (amount * monthlyRate * temp) / (temp - 1.0L);
 }
 
-float Loan::getTotalPayment() {
+long double Loan::getTotalPayment() {
     return emi * tenure;
 }
 
-float Loan::getTotalInterest() {
+long double Loan::getTotalInterest() {
     return (emi * tenure) - amount;
 }
 

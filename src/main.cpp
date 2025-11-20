@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Loan.h"
+#include "Config.h"
 
 using namespace std;
 
@@ -18,6 +19,12 @@ void printUsage() {
 }
 
 int main(int argc, char* argv[]) {
+    // load config file
+    Config config;
+    if (!config.loadFromFile("config.txt")) {
+        cout << "Warning: Could not load config.txt, using defaults" << endl;
+    }
+    
     if (argc < 2) {
         printUsage();
         return 1;
@@ -52,16 +59,43 @@ int main(int argc, char* argv[]) {
     
     if (calcPayment) {
         // add basic validation
-        if (amount <= 0) {
-            cout << "Error: Loan amount must be positive!" << endl;
+        long double minAmt = config.getDouble("MIN_AMOUNT");
+        long double maxAmt = config.getDouble("MAX_AMOUNT");
+        long double minInt = config.getDouble("MIN_INTEREST");
+        long double maxInt = config.getDouble("MAX_INTEREST");
+        long int minTen = config.getInt("MIN_TENURE");
+        long int maxTen = config.getInt("MAX_TENURE");
+        
+        // use defaults if config not loaded
+        if (minAmt == 0) minAmt = 1000;
+        if (maxAmt == 0) maxAmt = 100000000000;
+        if (minInt == 0) minInt = 0.01;
+        if (maxInt == 0) maxInt = 50.0;
+        if (minTen == 0) minTen = 1;
+        if (maxTen == 0) maxTen = 600;
+        
+        if (amount <= 0 || amount < minAmt) {
+            cout << "Error: Loan amount must be at least " << minAmt << "!" << endl;
             return 1;
         }
-        if (interestRate < 0) {
-            cout << "Error: Interest rate cannot be negative!" << endl;
+        if (amount > maxAmt) {
+            cout << "Error: Loan amount cannot exceed " << maxAmt << "!" << endl;
             return 1;
         }
-        if (tenure <= 0) {
-            cout << "Error: Tenure must be positive!" << endl;
+        if (interestRate < minInt) {
+            cout << "Error: Interest rate must be at least " << minInt << "%!" << endl;
+            return 1;
+        }
+        if (interestRate > maxInt) {
+            cout << "Error: Interest rate cannot exceed " << maxInt << "%!" << endl;
+            return 1;
+        }
+        if (tenure <= 0 || tenure < minTen) {
+            cout << "Error: Tenure must be at least " << minTen << " months!" << endl;
+            return 1;
+        }
+        if (tenure > maxTen) {
+            cout << "Error: Tenure cannot exceed " << maxTen << " months!" << endl;
             return 1;
         }
         

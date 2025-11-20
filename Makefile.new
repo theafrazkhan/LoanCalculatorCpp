@@ -5,7 +5,7 @@ SRC_DIR = src
 TEST_DIR = test
 
 # Source files
-SRCS = $(SRC_DIR)/Loan.cpp $(SRC_DIR)/main.cpp
+SRCS = $(SRC_DIR)/Loan.cpp $(SRC_DIR)/Config.cpp $(SRC_DIR)/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target

@@ -1,0 +1,19 @@
+# Loan Calculator Configuration File
+# Format: key=value
+
+# Default values for calculations
+DEFAULT_AMOUNT=100000
+DEFAULT_INTEREST=12.0
+DEFAULT_TENURE=360
+
+# Validation limits
+MIN_AMOUNT=1000
+MAX_AMOUNT=100000000000
+MIN_INTEREST=0.01
+MAX_INTEREST=50.0
+MIN_TENURE=1
+MAX_TENURE=600
+
+# Display settings
+CURRENCY_SYMBOL=Rs.
+DECIMAL_PLACES=2

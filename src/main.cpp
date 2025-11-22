@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ * @brief Main entry point for loan calculator application
+ * @author Afraz Khan
+ * @date November 2025
+ */
+
 #include <iostream>
 #include <string>
 #include "Loan.h"
@@ -5,6 +12,11 @@
 
 using namespace std;
 
+/**
+ * @brief Print usage information
+ * 
+ * Displays command-line usage instructions for the calculator
+ */
 void printUsage() {
     cout << "\nLoan/EMI Calculator" << endl;
     cout << "===================" << endl;
@@ -18,6 +30,12 @@ void printUsage() {
     cout << "  ./calc -cp -a 100000 -i 12 -n 360" << endl;
 }
 
+/**
+ * @brief Main function
+ * @param argc Number of command-line arguments
+ * @param argv Array of command-line argument strings
+ * @return 0 on success, 1 on error
+ */
 int main(int argc, char* argv[]) {
     // load config file
     Config config;

@@ -2,9 +2,10 @@
 
 ## Legacy Loan Calculator - Refactoring Project
 
-**Student Name:** Afraz Khan  
-**GitHub Username:** theafrazkhan  
-**Email:** thebestafraz@gmail.com  
+**Group Members:**
+- Afraz Khan (23P-3034)
+- Hassan Masood (23P-3010)
+
 **Course:** Software Engineering  
 **Instructor:** Engr. Muhammad Umer Haroon  
 **Date:** November 25, 2025
@@ -29,24 +30,6 @@ This project involved refactoring a legacy C++ loan calculator application to im
 
 ---
 
-## 2. Development Timeline
-
-The project was completed over 6 days with incremental commits:
-
-| Date | Activity | Commits |
-|------|----------|---------|
-| Nov 18, 2025 | Initial setup, basic structure | 2 |
-| Nov 19, 2025 | Input validation, overflow fixes | 2 |
-| Nov 20, 2025 | Configuration file implementation | 1 |
-| Nov 21, 2025 | Unit tests with GoogleTest | 1 |
-| Nov 22, 2025 | Doxygen documentation | 1 |
-| Nov 23, 2025 | Final polish, README update | 2 |
-
-**Total Commits:** 9 commits on dev branch
-
----
-
-## 3. Bug Fixes
 
 ### Bug Fix #1: Input Validation
 
@@ -166,7 +149,7 @@ public:
 
 ---
 
-## 4. Code Refactoring
+## Code Refactoring
 
 ### File Structure
 
@@ -291,32 +274,7 @@ class Loan {
 
 ---
 
-## 7. Git Commit History
-
-### Commit Timeline (Abbreviated)
-
-```
-* b40d1a8 updated README with complete documentation and examples
-* d589855 added makefile targets for test and docs
-* 37bc24f added doxygen documentation comments and generated docs
-* d7056ee added googletest unit tests - all passing
-* 08af5a6 added config file support - removed hardcoded values
-* f5191e9 fixed overflow issue - changed to long double for calculations
-* b230b40 added input validation for negative values
-* 0dd4e6b initial working version - basic emi calculator
-* 0393a08 updated gitignore file
-```
-
-### Commit Message Quality
-
-- Clear, concise descriptions
-- Present tense, imperative mood
-- Each commit represents atomic change
-- Progressive development visible
-
----
-
-## 8. Building and Running
+## Building and Running
 
 ### Quick Start
 

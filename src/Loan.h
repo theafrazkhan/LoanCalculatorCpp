@@ -1,7 +1,7 @@
 /**
  * @file Loan.h
  * @brief Loan calculator class for EMI calculations
- * @author Afraz Khan
+ * @author Afraz Khan (23P-3034), Hassan Masood (23P-3010)
  * @date November 2025
  */
 

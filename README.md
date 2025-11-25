@@ -2,6 +2,13 @@
 
 A refactored C++ loan/EMI calculator with input validation, overflow protection, and comprehensive testing.
 
+**Group Members:**
+- Afraz Khan (23P-3034)
+- Hassan Masood (23P-3010)
+
+**Course:** Software Engineering - Assignment 2  
+**Instructor:** Engr. Muhammad Umer Haroon
+
 ## Features
 
 - ✅ EMI (Equated Monthly Installment) calculation
@@ -149,9 +156,10 @@ Documentation will be available at `docs/html/index.html`
 - **Nov 22, 2025**: Doxygen documentation
 - **Nov 23, 2025**: Final polish and cleanup
 
-## Author
-**Afraz Khan**  
-GitHub: [@theafrazkhan](https://github.com/theafrazkhan)
+## Authors
+**Group Members:**
+- Afraz Khan (23P-3034)
+- Hassan Masood (23P-3010)
 
 ## Assignment
 Software Engineering Assignment 2  

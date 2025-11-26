@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 #include "Loan.h"
-#include "Config.h"
 
 using namespace std;
 
@@ -37,12 +36,6 @@ void printUsage() {
  * @return 0 on success, 1 on error
  */
 int main(int argc, char* argv[]) {
-    // load config file
-    Config config;
-    if (!config.loadFromFile("config.txt")) {
-        cout << "Warning: Could not load config.txt, using defaults" << endl;
-    }
-    
     if (argc < 2) {
         printUsage();
         return 1;
@@ -76,21 +69,13 @@ int main(int argc, char* argv[]) {
     }
     
     if (calcPayment) {
-        // add basic validation
-        long double minAmt = config.getDouble("MIN_AMOUNT");
-        long double maxAmt = config.getDouble("MAX_AMOUNT");
-        long double minInt = config.getDouble("MIN_INTEREST");
-        long double maxInt = config.getDouble("MAX_INTEREST");
-        long int minTen = config.getInt("MIN_TENURE");
-        long int maxTen = config.getInt("MAX_TENURE");
-        
-        // use defaults if config not loaded
-        if (minAmt == 0) minAmt = 1000;
-        if (maxAmt == 0) maxAmt = 100000000000;
-        if (minInt == 0) minInt = 0.01;
-        if (maxInt == 0) maxInt = 50.0;
-        if (minTen == 0) minTen = 1;
-        if (maxTen == 0) maxTen = 600;
+        // validation limits
+        long double minAmt = 1000;
+        long double maxAmt = 100000000000;
+        long double minInt = 0.01;
+        long double maxInt = 50.0;
+        long int minTen = 1;
+        long int maxTen = 600;
         
         if (amount <= 0 || amount < minAmt) {
             cout << "Error: Loan amount must be at least " << minAmt << "!" << endl;

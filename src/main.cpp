@@ -6,10 +6,76 @@
  */
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
+#include <map>
 #include "Loan.h"
 
 using namespace std;
+
+/**
+ * @brief Load configuration from file
+ * @param filename Path to configuration file
+ * @return Map of key-value pairs from config file
+ */
+map<string, string> loadConfig(const string& filename) {
+    map<string, string> config;
+    ifstream file(filename);
+    string line;
+    
+    if (!file.is_open()) {
+        return config; // return empty map if file cannot be opened
+    }
+    
+    while (getline(file, line)) {
+        // skip empty lines and comments
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
+        
+        // parse key=value
+        size_t pos = line.find('=');
+        if (pos != string::npos) {
+            string key = line.substr(0, pos);
+            string value = line.substr(pos + 1);
+            config[key] = value;
+        }
+    }
+    
+    file.close();
+    return config;
+}
+
+/**
+ * @brief Get double value from config map
+ * @param config Configuration map
+ * @param key Configuration key
+ * @param defaultValue Default value if key not found
+ * @return Configuration value as long double
+ */
+long double getConfigDouble(const map<string, string>& config, const string& key, long double defaultValue) {
+    auto it = config.find(key);
+    if (it != config.end()) {
+        return stold(it->second);
+    }
+    return defaultValue;
+}
+
+/**
+ * @brief Get integer value from config map
+ * @param config Configuration map
+ * @param key Configuration key
+ * @param defaultValue Default value if key not found
+ * @return Configuration value as long int
+ */
+long int getConfigInt(const map<string, string>& config, const string& key, long int defaultValue) {
+    auto it = config.find(key);
+    if (it != config.end()) {
+        return stol(it->second);
+    }
+    return defaultValue;
+}
 
 /**
  * @brief Print usage information
@@ -36,6 +102,12 @@ void printUsage() {
  * @return 0 on success, 1 on error
  */
 int main(int argc, char* argv[]) {
+    // load configuration from file
+    map<string, string> config = loadConfig("config.txt");
+    if (config.empty()) {
+        cout << "Warning: Could not load config.txt, using defaults" << endl;
+    }
+    
     if (argc < 2) {
         printUsage();
         return 1;
@@ -69,13 +141,13 @@ int main(int argc, char* argv[]) {
     }
     
     if (calcPayment) {
-        // validation limits
-        long double minAmt = 1000;
-        long double maxAmt = 100000000000;
-        long double minInt = 0.01;
-        long double maxInt = 50.0;
-        long int minTen = 1;
-        long int maxTen = 600;
+        // load validation limits from config file
+        long double minAmt = getConfigDouble(config, "MIN_AMOUNT", 1000);
+        long double maxAmt = getConfigDouble(config, "MAX_AMOUNT", 100000000000);
+        long double minInt = getConfigDouble(config, "MIN_INTEREST", 0.01);
+        long double maxInt = getConfigDouble(config, "MAX_INTEREST", 50.0);
+        long int minTen = getConfigInt(config, "MIN_TENURE", 1);
+        long int maxTen = getConfigInt(config, "MAX_TENURE", 600);
         
         if (amount <= 0 || amount < minAmt) {
             cout << "Error: Loan amount must be at least " << minAmt << "!" << endl;
